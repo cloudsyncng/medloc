@@ -1,0 +1,13 @@
+[{
+        "appointmentId": 1,
+        "patientId": 1,
+        "hospitalId": 1,
+        "date": "20170525T000000"
+    },
+    {
+        "appointmentId": 1,
+        "patientId": 1,
+        "hospitalId": 1,
+        "date": "20170525T000000"
+    }
+]

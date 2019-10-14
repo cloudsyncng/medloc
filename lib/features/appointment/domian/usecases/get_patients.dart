@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
-import 'package:med_plus/core/failures.dart';
+import 'package:med_plus/core/errors/failures.dart';
 import 'package:med_plus/features/appointment/domian/entities/patient.dart';
 import 'package:med_plus/features/appointment/domian/repositories/patient_repository.dart';
 
@@ -9,7 +9,7 @@ class GetPatient {
 
   GetPatient(this.repository);
 
-  Future<Either<Failures, Patient>> execute({@required int id}) async {
+  Future<Either<Failures, Patient>> call({@required int id}) async {
     return await repository.getPatient(id);
   }
 }

@@ -38,7 +38,7 @@ void main() {
     when(mockHospitalRepository.getHospitals())
         .thenAnswer((_) async => Right(tHospital));
     //act
-    final result = await usecase.execute();
+    final result = await usecase();
     //assert
     expect(result, Right(tHospital));
     verify(mockHospitalRepository.getHospitals());

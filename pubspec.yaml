@@ -1,5 +1,5 @@
 name: med_plus
-description: A new Flutter project.
+description: This is a client project on hospital reservation system.
 
 version: 1.0.0+1
 
@@ -25,6 +25,7 @@ dependencies:
 
   cupertino_icons: ^0.1.2
   flutter_screenutil: ^0.6.0
+  data_connection_checker: ^0.3.4
 
 dev_dependencies:
   flutter_test:

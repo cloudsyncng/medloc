@@ -31,7 +31,7 @@ void main() {
     when(mockPatientRepository.getPatient(any))
         .thenAnswer((_) async => Right(tPatient));
     //act
-    final result = await usecase.execute(id: tId);
+    final result = await usecase(id: tId);
     //assert
     expect(result, Right(tPatient));
     verify(mockPatientRepository.getPatient(tId));

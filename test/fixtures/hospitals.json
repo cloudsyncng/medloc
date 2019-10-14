@@ -1,0 +1,25 @@
+[{
+        "hospitalId": 1,
+        "name": "Ola",
+        "country": "Nigeria",
+        "state": "Plateau",
+        "lga": "Jos North",
+        "geoPoint": [13.5552, 12.5565]
+    },
+    {
+        "hospitalId": 2,
+        "name": "specialist",
+        "country": "Nigeria",
+        "state": "Plateau",
+        "lga": "Jos North",
+        "geoPoint": [13.5563, 12.5584]
+    },
+    {
+        "hospitalId": 3,
+        "name": "Juth",
+        "country": "Nigeria",
+        "state": "Plateau",
+        "lga": "Jos North",
+        "geoPoint": [13.11111, 13.00000]
+    }
+]

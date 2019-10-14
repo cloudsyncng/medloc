@@ -36,7 +36,7 @@ void main() {
     when(mockAppointmentsRepository.getAppointments())
         .thenAnswer((_) async => Right(tAppointment));
     //act
-    final result = await usecase.execute();
+    final result = await usecase();
     //assert
     expect(result, Right(tAppointment));
     verify(mockAppointmentsRepository.getAppointments());
