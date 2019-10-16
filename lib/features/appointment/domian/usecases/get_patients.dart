@@ -9,7 +9,9 @@ class GetPatient {
 
   GetPatient(this.repository);
 
-  Future<Either<Failures, Patient>> call({@required int id}) async {
+  Future<Either<Failures, Patient>> call(
+    {@required int id}
+    ) async {
     return await repository.getPatient(id);
   }
 }

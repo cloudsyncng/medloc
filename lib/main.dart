@@ -8,7 +8,13 @@ class MedPlus extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: MaterialApp(),
+      child: MaterialApp(
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text("data"),
+          ),
+        ),
+      ),
     );
   }
 }
