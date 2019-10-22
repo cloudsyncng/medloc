@@ -27,12 +27,8 @@ class HospitalLocalDataSourceImpl implements HospitalLocalDataSource {
   Future<List<HospitalModel>> getHospitals() {
     final jsonString = sharedPreferences.getString(CACHED_HOSPITALS);
     if (jsonString != null) {
-      final List<HospitalModel> hospitals = [];
-      final maps = List<Map<String, dynamic>>.from(jsonDecode(jsonString));
-      maps.forEach((hp) {
-        hospitals.add(HospitalModel.fromJson(hp));
-      });
-      return Future.value(hospitals);
+      return Future.value(
+          HospitalModel().hospitaJsonParser(jsonDecode(jsonString)));
     } else {
       throw CacheException();
     }

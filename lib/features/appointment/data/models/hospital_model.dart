@@ -36,4 +36,13 @@ class HospitalModel extends Hospital {
       "geoPoint": geoPoint
     };
   }
+
+  List<HospitalModel> hospitaJsonParser(List<Map<String, dynamic>> jsonList) {
+    List<HospitalModel> hospitalModels = [];
+    jsonList.forEach((hospitalJson) {
+      hospitalModels.add(HospitalModel.fromJson(hospitalJson));
+    });
+
+    return hospitalModels;
+  }
 }
