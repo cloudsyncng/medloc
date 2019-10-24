@@ -10,6 +10,14 @@ class SearchHospitals extends StatefulWidget {
 class _SearchHospitalsState extends State<SearchHospitals> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: Stack(
+        children: <Widget>[
+          Center(
+            child: Text("MAP GOES HERE!!!!!!!"),
+          )
+        ],
+      ),
+    );
   }
 }

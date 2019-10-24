@@ -4,5 +4,4 @@ import 'package:med_plus/features/appointment/domian/entities/hospital.dart';
 
 abstract class HospitalRepository {
   Future<Either<Failures, List<Hospital>>> getHospitals();
-  Future<Either<Failures, Hospital>> getHospital(int id);
 }

@@ -20,11 +20,6 @@ class HospitalRepositoryImpl implements HospitalRepository {
       {@required this.remoteDataSource,
       @required this.localDatasource,
       @required this.networkInfo});
-  @override
-  Future<Either<Failures, Hospital>> getHospital(int id) {
-    // TODO: implement getHospital
-    return null;
-  }
 
   @override
   Future<Either<Failures, List<Hospital>>> getHospitals() async {

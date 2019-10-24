@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:med_plus/features/appointment/domian/entities/hospital.dart';
 
 class HospitalModel extends Hospital {
@@ -37,12 +39,12 @@ class HospitalModel extends Hospital {
     };
   }
 
-  List<HospitalModel> hospitaJsonParser(List<Map<String, dynamic>> jsonList) {
+  List<HospitalModel> hospitaJsonParser(String jsonString) {
+    final jsonList = List.from(jsonDecode(jsonString));
     List<HospitalModel> hospitalModels = [];
     jsonList.forEach((hospitalJson) {
       hospitalModels.add(HospitalModel.fromJson(hospitalJson));
     });
-
     return hospitalModels;
   }
 }

@@ -7,7 +7,9 @@ import 'package:med_plus/features/appointment/presentation/pages/settings_page.d
 import 'package:med_plus/features/appointment/presentation/pages/specialists_page.dart';
 import 'features/appointment/presentation/pages/dashboard.dart';
 
-void main() => runApp(MedPlus());
+void main() {
+  runApp(MedPlus());
+}
 
 class MedPlus extends StatelessWidget {
   const MedPlus({Key key}) : super(key: key);

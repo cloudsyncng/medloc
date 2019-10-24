@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:med_plus/features/appointment/presentation/widgets/bashboard_btn.dart';
 
 class DashBoard extends StatefulWidget {
@@ -12,8 +13,58 @@ class _DashBoardState extends State<DashBoard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: Drawer(),
+        drawer: Drawer(
+          child: Column(
+            children: <Widget>[
+              UserAccountsDrawerHeader(
+                currentAccountPicture: Container(
+                  height: 100,
+                  width: 100,
+                  decoration: BoxDecoration(
+                      color: Colors.white, shape: BoxShape.circle),
+                ),
+                accountEmail: Text(
+                  "useremail@email.com",
+                  style: TextStyle(
+                      color: Colors.white70,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w400),
+                ),
+                accountName: Text(
+                  "Users Name",
+                  style: TextStyle(
+                      color: Colors.white70,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500),
+                ),
+              ),
+              Container(
+                height: 400,
+                child: ListView(
+                  scrollDirection: Axis.vertical,
+                  children: <Widget>[
+                    ListTile(
+                      leading: Icon(
+                        MdiIcons.shieldSearch,
+                        color: Colors.blue,
+                        size: 40,
+                      ),
+                      title: Text(
+                        "Search",
+                        style: TextStyle(
+                            color: Colors.black54,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 20),
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
         appBar: AppBar(
+          title: Text("MEDLOG"),
           backgroundColor: Colors.transparent,
           elevation: 0,
         ),
@@ -26,6 +77,25 @@ class _DashBoardState extends State<DashBoard> {
                   Container(
                     height: 200,
                     color: Colors.blueAccent,
+                    child: Column(
+                      children: <Widget>[
+                        Icon(
+                          MdiIcons.hospital,
+                          size: 100,
+                          color: Colors.red,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Text(
+                            "Some caption goes here",
+                            style: TextStyle(
+                                color: Colors.white70,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                   Expanded(
                     child: Container(

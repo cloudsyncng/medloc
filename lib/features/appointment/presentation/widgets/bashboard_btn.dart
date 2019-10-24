@@ -9,7 +9,7 @@ class DbBtnModel {
 }
 
 List<DbBtnModel> dbBtns = [
-  DbBtnModel(icon: MdiIcons.shieldSearch, title: "Search", url: "search"),
+  DbBtnModel(icon: MdiIcons.navigation, title: "Search", url: "search"),
   DbBtnModel(
       icon: MdiIcons.viewDashboard, title: "Appointments", url: "appointments"),
   DbBtnModel(
