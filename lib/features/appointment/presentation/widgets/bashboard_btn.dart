@@ -51,10 +51,10 @@ class DbBtn extends StatelessWidget {
           Text(
             dbBtnModel.title,
             style: TextStyle(
-                fontSize: 20,
+                fontSize: 18,
                 fontWeight: FontWeight.bold,
                 color: Colors.black45,
-                letterSpacing: 2),
+                letterSpacing: 1),
           )
         ],
       ),
