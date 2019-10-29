@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:med_plus/features/appointment/presentation/widgets/bashboard_btn.dart';
@@ -75,23 +76,24 @@ class _DashBoardState extends State<DashBoard> {
               Column(
                 children: <Widget>[
                   Container(
+                    width: double.infinity,
                     height: 200,
-                    color: Colors.blueAccent,
+                    decoration: BoxDecoration(
+                        color: Colors.blueAccent,
+                        image: DecorationImage(
+                            image: ExactAssetImage("assets/images/bg.jpg"),
+                            fit: BoxFit.fill)),
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Icon(
-                          MdiIcons.hospital,
-                          size: 100,
-                          color: Colors.red,
-                        ),
                         Padding(
                           padding: const EdgeInsets.only(top: 10),
                           child: Text(
                             "Some caption goes here",
                             style: TextStyle(
-                                color: Colors.white70,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w500),
+                                color: Colors.blueAccent,
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold),
                           ),
                         )
                       ],
