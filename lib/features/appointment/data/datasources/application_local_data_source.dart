@@ -1,21 +1,21 @@
 import 'dart:convert';
 
-import 'package:med_plus/core/errors/exceptions.dart';
-import 'package:med_plus/features/appointment/data/models/hospital_model.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:meta/meta.dart';
+import 'package:med_plus/core/errors/exceptions.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:med_plus/features/appointment/data/models/hospital_model.dart';
 
-abstract class HospitalLocalDataSource {
+abstract class ApplicationLocalDataSource {
   Future<List<HospitalModel>> getHospitals();
   Future<void> cacheHospitals(List<HospitalModel> hospitalModels);
 }
 
 const CACHED_HOSPITALS = "CACHED_HOSPITALS";
 
-class HospitalLocalDataSourceImpl implements HospitalLocalDataSource {
+class ApplicationDataSourceImpl implements ApplicationLocalDataSource {
   final SharedPreferences sharedPreferences;
 
-  HospitalLocalDataSourceImpl({@required this.sharedPreferences});
+  ApplicationDataSourceImpl({@required this.sharedPreferences});
 
   @override
   Future<void> cacheHospitals(List<HospitalModel> hospitalModels) {
@@ -28,7 +28,7 @@ class HospitalLocalDataSourceImpl implements HospitalLocalDataSource {
     final jsonString = sharedPreferences.getString(CACHED_HOSPITALS);
     if (jsonString != null) {
       return Future.value(
-          HospitalModel().hospitaJsonParser(jsonDecode(jsonString)));
+          HospitalModel.hospitalJsonParser(jsonDecode(jsonString)));
     } else {
       throw CacheException();
     }

@@ -39,7 +39,7 @@ class HospitalModel extends Hospital {
     };
   }
 
-  List<HospitalModel> hospitaJsonParser(String jsonString) {
+  static List<HospitalModel> hospitalJsonParser(String jsonString) {
     final jsonList = List.from(jsonDecode(jsonString));
     List<HospitalModel> hospitalModels = [];
     jsonList.forEach((hospitalJson) {

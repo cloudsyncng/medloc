@@ -4,4 +4,5 @@ import 'package:med_plus/features/appointment/domian/entities/appointment.dart';
 
 abstract class AppointmentsRepository {
   Future<Either<Failures, List<Appointment>>> getAppointments(int patientId);
+  Future<Either<Failures, bool>> addAppointment(Appointment appointment);
 }

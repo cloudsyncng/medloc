@@ -4,21 +4,21 @@ import 'package:med_plus/core/network/network_info.dart';
 import 'package:meta/meta.dart';
 import 'package:med_plus/core/errors/failures.dart';
 
-import 'package:med_plus/features/appointment/data/datasources/hospital_local_data_source.dart';
-import 'package:med_plus/features/appointment/data/datasources/hospital_remote_data_source.dart';
+import 'package:med_plus/features/appointment/data/datasources/application_local_data_source.dart';
+import 'package:med_plus/features/appointment/data/datasources/application_remote_data_source.dart';
 import 'package:med_plus/features/appointment/domian/entities/hospital.dart';
 import 'package:med_plus/features/appointment/domian/repositories/hospital_repository.dart';
 
 typedef Future<List<Hospital>> _singleOrManyHospitals();
 
 class HospitalRepositoryImpl implements HospitalRepository {
-  final HospitalRemoteDataSource remoteDataSource;
-  final HospitalLocalDataSource localDatasource;
+  final ApplicationRemoteDataSource remoteDataSource;
+  final ApplicationLocalDataSource localDataSource;
   final NetworkInfo networkInfo;
 
   HospitalRepositoryImpl(
       {@required this.remoteDataSource,
-      @required this.localDatasource,
+      @required this.localDataSource,
       @required this.networkInfo});
 
   @override
@@ -33,15 +33,15 @@ class HospitalRepositoryImpl implements HospitalRepository {
     if (await networkInfo.isConnected) {
       try {
         final remoteHospital = await getGeneralHospitals();
-        localDatasource.cacheHospitals(remoteHospital);
+        localDataSource.cacheHospitals(remoteHospital);
         return Right(remoteHospital);
       } on ServerException {
         return Left(ServerFailure());
       }
     } else {
       try {
-        final localDataSource = await localDatasource.getHospitals();
-        return Right(localDataSource);
+        final localSource = await localDataSource.getHospitals();
+        return Right(localSource);
       } on CacheException {
         return Left(CacheFailure());
       }

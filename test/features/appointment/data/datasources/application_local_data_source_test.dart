@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:matcher/matcher.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:med_plus/core/errors/exceptions.dart';
-import 'package:med_plus/features/appointment/data/datasources/hospital_local_data_source.dart';
+import 'package:med_plus/features/appointment/data/datasources/application_local_data_source.dart';
 import 'package:med_plus/features/appointment/data/models/hospital_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mockito/mockito.dart';
@@ -13,13 +13,13 @@ import '../../../../fixtures/fixtures_reader.dart';
 class MockSharedPreferences extends Mock implements SharedPreferences {}
 
 void main() {
-  HospitalLocalDataSourceImpl hospitalLocalDataSourceImpl;
+  ApplicationDataSourceImpl applicationLocalDataSourceImpl;
   MockSharedPreferences mockSharedPreferences;
 
   setUp(() {
     mockSharedPreferences = MockSharedPreferences();
-    hospitalLocalDataSourceImpl =
-        HospitalLocalDataSourceImpl(sharedPreferences: mockSharedPreferences);
+    applicationLocalDataSourceImpl =
+        ApplicationDataSourceImpl(sharedPreferences: mockSharedPreferences);
   });
 
   group("getHospitals", () {
@@ -36,7 +36,7 @@ void main() {
       when(mockSharedPreferences.getString(any))
           .thenReturn(fixture("cached_hospitals.json"));
       //act
-      final result = await hospitalLocalDataSourceImpl.getHospitals();
+      final result = await applicationLocalDataSourceImpl.getHospitals();
       //assert
       verify(mockSharedPreferences.getString(CACHED_HOSPITALS));
       expect(result, tHospitals);
@@ -47,13 +47,11 @@ void main() {
       //arrange
       when(mockSharedPreferences.getString(any)).thenReturn(null);
       //act
-      final call = hospitalLocalDataSourceImpl.getHospitals;
+      final call = applicationLocalDataSourceImpl.getHospitals;
       //assert
       expect(() => call(), throwsA(TypeMatcher<CacheException>()));
     });
   });
 
-  group("CacheHospitals", () {
-    
-  });
+  group("CacheHospitals", () {});
 }

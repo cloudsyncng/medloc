@@ -27,6 +27,8 @@ class MedPlus extends StatelessWidget {
 
     return Container(
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        //! debugShowMaterialGrid: true,
         routes: routes,
         home: DashBoard(),
       ),
