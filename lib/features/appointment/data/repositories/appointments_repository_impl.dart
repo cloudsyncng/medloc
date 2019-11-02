@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:med_plus/core/errors/exceptions.dart';
 import 'package:med_plus/core/errors/failures.dart';
 import 'package:med_plus/core/network/network_info.dart';
 import 'package:med_plus/features/appointment/data/datasources/application_local_data_source.dart';
@@ -16,9 +17,21 @@ class AppointmentsRepositoryImpl implements AppointmentsRepository {
       this.applicationRemoteDataSource,
       this.applicationLocalDataSource});
   @override
-  Future<Either<Failures, List<Appointment>>> getAppointments(int patientId) {
-    // TODO: implement getAppointments
-    return null;
+  Future<Either<Failures, List<Appointment>>> getAppointments(
+      int patientId) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final appointmnets =
+            await applicationRemoteDataSource.getAppointments(patientId);
+        await applicationLocalDataSource.cacheAppointments(appointmnets);
+        return Right(appointmnets);
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      final appointments = await applicationLocalDataSource.getAppointments();
+      return Right(appointments);
+    }
   }
 
   @override

@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:ffi';
 
 import 'package:med_plus/features/appointment/domian/entities/appointment.dart';
@@ -41,5 +42,16 @@ class AppointmentModel extends Appointment {
       'status': status,
       'isDone': isDone
     };
+  }
+
+  static List<AppointmentModel> appointmentsJsonParser(String jsonString) {
+    final listOfJsonMap = List.from(jsonDecode(jsonString));
+    List<AppointmentModel> appointmentModels = [];
+
+    listOfJsonMap.forEach((appointment) {
+      appointmentModels.add(appointment);
+    });
+
+    return appointmentModels;
   }
 }

@@ -89,7 +89,7 @@ class _DashBoardState extends State<DashBoard> {
                         Padding(
                           padding: const EdgeInsets.only(top: 10),
                           child: Text(
-                            "Some caption goes here",
+                            "",
                             style: TextStyle(
                                 color: Colors.blueAccent,
                                 fontSize: 25,
