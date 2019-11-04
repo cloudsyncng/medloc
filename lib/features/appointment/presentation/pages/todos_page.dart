@@ -10,10 +10,6 @@ class TaskPage extends StatefulWidget {
 class _TaskPageState extends State<TaskPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text("TASK PAGE"),
-      ),
-    );
+    return Scaffold();
   }
 }
