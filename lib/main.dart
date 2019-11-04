@@ -25,13 +25,14 @@ class MedPlus extends StatelessWidget {
       'settings': (context) => SettingsPage()
     };
 
-    return Container(
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        //! debugShowMaterialGrid: true,
-        routes: routes,
-        home: DashBoard(),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primaryColor: Colors.blueAccent,
       ),
+      //debugShowMaterialGrid: true,
+      routes: routes,
+      home: DashBoard(),
     );
   }
 }

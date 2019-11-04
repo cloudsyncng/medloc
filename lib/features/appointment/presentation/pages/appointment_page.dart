@@ -45,78 +45,78 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
 
   Padding buildExpandedTile() {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: ExpansionTile(
-        onExpansionChanged: (isOpen) {},
-        title: Container(
-          height: 50,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(
-                "JUTH",
-                style: tileHeaderStyle,
-              ),
-              Text(
-                "2015-08-25",
-                style: tileHeaderStyle,
-              ),
-              Text(
-                "Pending",
-                style: tileHeaderStyle,
-              ),
-            ],
-          ),
-        ),
-        children: <Widget>[
-          buildContentTile("Hospital:", "Juth"),
-          buildContentTile("Specialist:", "Dr Ajayi Bukola"),
-          buildContentTile("Specialisation:", "Surgeon"),
-          buildContentTile("Time:", "12:30 PM"),
-          Padding(
-            padding: EdgeInsets.only(left: 20, bottom: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 2),
+      child: Card(
+        color: Colors.blueAccent,
+        child: ExpansionTile(
+          onExpansionChanged: (isOpen) {},
+          title: Container(
+            height: 50,
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                IconButton(
-                  color: Colors.redAccent,
-                  iconSize: 30,
-                  icon: Icon(MdiIcons.phone),
-                  tooltip: "Call specialist",
-                  onPressed: () {},
+                Text(
+                  "JUTH",
+                  style: tileHeaderStyle,
                 ),
                 Text(
-                  "Contact Specialist",
-                  style: tileContentLabelStyle,
-                )
+                  "2015-08-25",
+                  style: tileHeaderStyle,
+                ),
+                Icon(Icons.view_agenda)
               ],
             ),
           ),
-          Padding(
-            padding: EdgeInsets.only(left: 20, bottom: 20),
-            child: Row(
-              children: <Widget>[
-                IconButton(
-                  color: Colors.redAccent,
-                  iconSize: 30,
-                  icon: Icon(MdiIcons.phone),
-                  tooltip: "Call Hospital",
-                  onPressed: () {},
-                ),
-                Text("Contact Hospital", style: tileContentLabelStyle)
-              ],
+          children: <Widget>[
+            buildContentTile("Hospital:", "Juth"),
+            buildContentTile("Specialist:", "Dr Ajayi Bukola"),
+            buildContentTile("Specialisation:", "Surgeon"),
+            buildContentTile("Time:", "12:30 PM"),
+            Padding(
+              padding: EdgeInsets.only(left: 20, bottom: 20),
+              child: Row(
+                children: <Widget>[
+                  IconButton(
+                    color: Colors.redAccent,
+                    iconSize: 30,
+                    icon: Icon(MdiIcons.phone),
+                    tooltip: "Call specialist",
+                    onPressed: () {},
+                  ),
+                  Text(
+                    "Contact Specialist",
+                    style: tileContentLabelStyle,
+                  )
+                ],
+              ),
             ),
-          )
-        ],
+            Padding(
+              padding: EdgeInsets.only(left: 20, bottom: 20),
+              child: Row(
+                children: <Widget>[
+                  IconButton(
+                    color: Colors.redAccent,
+                    iconSize: 30,
+                    icon: Icon(MdiIcons.phone),
+                    tooltip: "Call Hospital",
+                    onPressed: () {},
+                  ),
+                  Text("Contact Hospital", style: tileContentLabelStyle)
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
 
   Padding buildContentTile(String label, String value) {
     return Padding(
-      padding: const EdgeInsets.only(left: 20, bottom: 20),
+      padding: const EdgeInsets.only(left: 20, bottom: 20, right: 50),
       child: Container(
           child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Text(
             label,

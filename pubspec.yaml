@@ -27,7 +27,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   flutter_screenutil: ^0.6.0
   data_connection_checker: ^0.3.4
-
+  url_launcher: ^5.2.5
 
 dev_dependencies:
   flutter_test:
@@ -37,7 +37,12 @@ flutter:
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
   assets:
-      - assets/images/bg.jpg
+    - assets/images/appointment.png
+    - assets/images/search.png
+    - assets/images/hospital.png
+    - assets/images/appoints.png
+    - assets/images/settings.png
+    - assets/images/profile.png
   #  - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -48,10 +53,14 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+    - family: Anton
+      fonts:
+        - asset: assets/fonts/Anton-Regular.ttf
+
+    - family: Mansalva
+      fonts:
+        - asset: assets/fonts/Mansalva-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
