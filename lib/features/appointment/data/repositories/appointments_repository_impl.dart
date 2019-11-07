@@ -17,26 +17,24 @@ class AppointmentsRepositoryImpl implements AppointmentsRepository {
       this.applicationRemoteDataSource,
       this.applicationLocalDataSource});
   @override
-  Future<Either<Failures, List<Appointment>>> getAppointments(
-      int patientId) async {
-    if (await networkInfo.isConnected) {
+  Future<Either<Failures, List<Appointment>>> getAppointments() async {
+    if (!await networkInfo.isConnected) {
       try {
         final appointmnets =
-            await applicationRemoteDataSource.getAppointments(patientId);
-        await applicationLocalDataSource.cacheAppointments(appointmnets);
+            await applicationRemoteDataSource.getAppointments();
+        //! await applicationLocalDataSource.cacheAppointments(appointmnets);
         return Right(appointmnets);
       } on ServerException {
         return Left(ServerFailure());
       }
     } else {
-      final appointments = await applicationLocalDataSource.getAppointments();
-      return Right(appointments);
+      //final appointments = await applicationLocalDataSource.getAppointments();
+      return Left(ServerFailure());
     }
   }
 
   @override
   Future<Either<Failures, bool>> addAppointment(Appointment appointment) {
-    // TODO: implement addAppointment
     return null;
   }
 }

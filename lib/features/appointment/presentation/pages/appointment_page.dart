@@ -1,53 +1,65 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:med_plus/features/appointment/presentation/bloc/bloc.dart';
 import 'package:med_plus/features/appointment/presentation/utils/styles.dart';
 
-class AppointmentsPage extends StatefulWidget {
-  AppointmentsPage({Key key}) : super(key: key);
+import '../../../../injection_container.dart';
 
-  @override
-  _AppointmentsPageState createState() => _AppointmentsPageState();
-}
+class AppointmentsPage extends StatelessWidget {
+  const AppointmentsPage({Key key}) : super(key: key);
 
-class _AppointmentsPageState extends State<AppointmentsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Appointments"),
-          actions: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Icon(MdiIcons.more),
-            )
-          ],
-        ),
-        body: Builder(
-          builder: (context) {
-            return RefreshIndicator(
-              onRefresh: () async {
-                return Scaffold.of(context).showSnackBar(SnackBar(
-                  content: Text("List is up to date"),
-                ));
-              },
-              child: ListView(
-                children: <Widget>[
-                  buildExpandedTile(),
-                  buildExpandedTile(),
-                  buildExpandedTile(),
-                  buildExpandedTile(),
-                ],
-              ),
-            );
-          },
-        ));
+      appBar: AppBar(
+        title: Text("Appointments"),
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(MdiIcons.more),
+          )
+        ],
+      ),
+      body: BlocProvider(
+          builder: (context) => sl<MedlogBloc>(),
+          child: BlocBuilder<MedlogBloc, MedlogState>(
+            builder: (context, state) {
+              if (state is Empty) {
+                BlocProvider.of<MedlogBloc>(context)
+                    .add(GetAppointmentsEvents());
+                return Container();
+              } else if (state is Loading) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else if (state is Loaded) {
+                print(state.appointments);
+                return ListView(
+                  children: <Widget>[
+                    buildExpandedTile(),
+                    buildExpandedTile(),
+                    buildExpandedTile(),
+                    buildExpandedTile(),
+                  ],
+                );
+              } else if (state is Error) {
+                return Center(
+                  child: Text(
+                    state.message,
+                    style: TextStyle(fontFamily: "Anton", fontSize: 20),
+                  ),
+                );
+              }
+            },
+          )),
+    );
   }
 
   Padding buildExpandedTile() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 2),
       child: Card(
-        color: Colors.blueAccent,
         child: ExpansionTile(
           onExpansionChanged: (isOpen) {},
           title: Container(
@@ -63,48 +75,18 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
                   "2015-08-25",
                   style: tileHeaderStyle,
                 ),
-                Icon(Icons.view_agenda)
+                Icon(
+                  Icons.check,
+                  color: Colors.green,
+                )
               ],
             ),
           ),
           children: <Widget>[
-            buildContentTile("Hospital:", "Juth"),
+            buildContentTile("Hospital:", "Jos University"),
             buildContentTile("Specialist:", "Dr Ajayi Bukola"),
             buildContentTile("Specialisation:", "Surgeon"),
             buildContentTile("Time:", "12:30 PM"),
-            Padding(
-              padding: EdgeInsets.only(left: 20, bottom: 20),
-              child: Row(
-                children: <Widget>[
-                  IconButton(
-                    color: Colors.redAccent,
-                    iconSize: 30,
-                    icon: Icon(MdiIcons.phone),
-                    tooltip: "Call specialist",
-                    onPressed: () {},
-                  ),
-                  Text(
-                    "Contact Specialist",
-                    style: tileContentLabelStyle,
-                  )
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 20, bottom: 20),
-              child: Row(
-                children: <Widget>[
-                  IconButton(
-                    color: Colors.redAccent,
-                    iconSize: 30,
-                    icon: Icon(MdiIcons.phone),
-                    tooltip: "Call Hospital",
-                    onPressed: () {},
-                  ),
-                  Text("Contact Hospital", style: tileContentLabelStyle)
-                ],
-              ),
-            )
           ],
         ),
       ),

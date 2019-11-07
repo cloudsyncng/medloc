@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:med_plus/features/appointment/data/models/appointment_model.dart';
+import 'package:med_plus/features/appointment/data/models/patient_model.dart';
+import 'package:med_plus/features/appointment/domian/entities/patient.dart';
 import 'package:meta/meta.dart';
 import 'package:med_plus/core/errors/exceptions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -11,9 +13,13 @@ abstract class ApplicationLocalDataSource {
   Future<List<AppointmentModel>> getAppointments();
   Future<void> cacheHospitals(List<HospitalModel> hospitalModels);
   Future<void> cacheAppointments(List<AppointmentModel> appointmentsModels);
+  Future<void> cachePatient(PatientModel patient);
+  Future<PatientModel> getLastCachedPatient(String phone, String password);
 }
 
 const CACHED_HOSPITALS = "CACHED_HOSPITALS";
+const CACHED_PATIENT = "CACHED_PATIENT";
+const CACHED_APPOINTMENTS = "CACHED_APPOINTMENTS";
 
 class ApplicationDataSourceImpl implements ApplicationLocalDataSource {
   final SharedPreferences sharedPreferences;
@@ -45,7 +51,24 @@ class ApplicationDataSourceImpl implements ApplicationLocalDataSource {
 
   @override
   Future<void> cacheAppointments(List<AppointmentModel> appointmentsModels) {
-    // TODO: implement cacheAppointments
     return null;
+  }
+
+  @override
+  Future<void> cachePatient(PatientModel patient) {
+    return sharedPreferences.setString(
+        CACHED_PATIENT, jsonEncode(patient.toJson()));
+  }
+
+  @override
+  Future<PatientModel> getLastCachedPatient(String phone, String password) {
+    final jsonString = sharedPreferences.get(CACHED_PATIENT);
+    if (jsonString != null) {
+      return Future.value(
+        PatientModel.fromJson(jsonString),
+      );
+    } else {
+      throw CacheException();
+    }
   }
 }

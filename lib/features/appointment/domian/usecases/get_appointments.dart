@@ -4,12 +4,12 @@ import 'package:med_plus/features/appointment/domian/entities/appointment.dart';
 import 'package:meta/meta.dart';
 import 'package:med_plus/features/appointment/domian/repositories/appointments_repository.dart';
 
-class GetAppointment {
+class GetAppointments {
   final AppointmentsRepository repository;
 
-  GetAppointment({@required this.repository});
+  GetAppointments({@required this.repository});
 
-  Future<Either<Failures, List<Appointment>>> call(int patientId) {
-    return repository.getAppointments(patientId);
+  Future<Either<Failures, List<Appointment>>> call() {
+    return repository.getAppointments();
   }
 }

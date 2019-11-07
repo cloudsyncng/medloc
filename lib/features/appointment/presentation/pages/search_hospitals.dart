@@ -12,8 +12,22 @@ class _SearchHospitalsState extends State<SearchHospitals> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        iconTheme: IconThemeData(color: Colors.blueAccent),
+      ),
       body: Stack(
-        children: <Widget>[HospitalsMap()],
+        children: <Widget>[
+          HospitalsMap(),
+          Positioned(
+            right: 20,
+            child: FloatingActionButton(
+              onPressed: () {},
+              child: Icon(Icons.add),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -129,7 +143,7 @@ class HospitalsMap extends StatelessWidget {
                                       "Full Address of the selected hospital",
                                       style: TextStyle(
                                         fontSize: 18,
-                                        fontFamily: "Mansalva",
+                                        fontFamily: "Anton",
                                         color: Colors.blueAccent,
                                       ),
                                     )
@@ -152,7 +166,7 @@ class HospitalsMap extends StatelessWidget {
                                       "https://www.hospitalmedlog.com",
                                       style: TextStyle(
                                         fontSize: 18,
-                                        fontFamily: "Mansalva",
+                                        fontFamily: "Anton",
                                         color: Colors.blueAccent,
                                       ),
                                     )
@@ -175,6 +189,7 @@ class HospitalsMap extends StatelessWidget {
                                       "(+234)8038691936",
                                       style: TextStyle(
                                         fontSize: 18,
+                                        fontFamily: "Anton",
                                         color: Colors.blueAccent,
                                       ),
                                     )

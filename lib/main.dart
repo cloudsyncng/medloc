@@ -6,8 +6,11 @@ import 'package:med_plus/features/appointment/presentation/pages/search_hospital
 import 'package:med_plus/features/appointment/presentation/pages/settings_page.dart';
 import 'package:med_plus/features/appointment/presentation/pages/specialists_page.dart';
 import 'features/appointment/presentation/pages/dashboard.dart';
+import 'package:med_plus/injection_container.dart' as di;
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await di.init();
   runApp(MedPlus());
 }
 

@@ -79,10 +79,10 @@ class _ProfilePageState extends State<ProfilePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 SizedBox(
-                  height: 180,
+                  height: 170,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 20),
+                  padding: const EdgeInsets.only(bottom: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
@@ -113,8 +113,46 @@ class _ProfilePageState extends State<ProfilePage> {
                       style: TextStyle(
                           fontSize: 22, fontFamily: "Anton", letterSpacing: 5)),
                 ),
-                Text("08033669999",
-                    style: TextStyle(fontSize: 22, letterSpacing: 2)),
+                ListTile(
+                  leading: Icon(
+                    Icons.phone_forwarded,
+                    color: Colors.blueAccent,
+                  ),
+                  title: Text("08033669999"),
+                  subtitle: Text("Phone"),
+                ),
+                ListTile(
+                  leading: Icon(
+                    Icons.email,
+                    color: Colors.blueAccent,
+                  ),
+                  title: Text("ismailawa.aliyu@gmail.com"),
+                  subtitle: Text("Email"),
+                ),
+                ListTile(
+                  leading: Icon(
+                    Icons.dehaze,
+                    color: Colors.blueAccent,
+                  ),
+                  title: Text("15-07-1989"),
+                  subtitle: Text("DOB"),
+                ),
+                ListTile(
+                  leading: Icon(
+                    MdiIcons.bloodBag,
+                    color: Colors.redAccent,
+                  ),
+                  title: Text("A+"),
+                  subtitle: Text("Blood Group"),
+                ),
+                ListTile(
+                  leading: Icon(
+                    MdiIcons.bloodBag,
+                    color: Colors.redAccent,
+                  ),
+                  title: Text("AA"),
+                  subtitle: Text("Gynotype"),
+                )
               ],
             ),
           )
