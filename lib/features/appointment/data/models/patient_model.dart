@@ -8,6 +8,7 @@ class PatientModel extends Patient {
       @required String surname,
       @required DateTime dob,
       @required String gender,
+      @required String email,
       @required String password,
       @required String phone})
       : super(
@@ -16,6 +17,7 @@ class PatientModel extends Patient {
             surname: surname,
             dob: dob,
             gender: gender,
+            email: email,
             password: password,
             phone: phone);
 
@@ -26,7 +28,8 @@ class PatientModel extends Patient {
         surname: json["surname"],
         dob: json["dob"],
         gender: json["gender"],
-        password: json["password"],
+        email: json['email'],
+        password: json["password"] ?? 'null',
         phone: json["phone"]);
   }
 
@@ -37,7 +40,8 @@ class PatientModel extends Patient {
       "surname": this.surname,
       "dob": this.dob,
       "gender": this.gender,
-      "password": this.password,
+      "email": this.email,
+      "password": this.password ?? 'null',
       "phone": this.phone
     };
   }

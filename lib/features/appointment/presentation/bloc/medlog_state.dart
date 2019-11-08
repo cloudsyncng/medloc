@@ -15,13 +15,13 @@ class Empty extends MedlogState {}
 class Loading extends MedlogState {}
 
 class Loaded extends MedlogState {
-  final Hospital hospital;
+  final List<Hospital> hospitals;
   final Specialist specialist;
   final List<Appointment> appointments;
   final Patient patient;
 
-  Loaded({this.hospital, this.specialist, this.appointments, this.patient})
-      : super([hospital, specialist, appointments, patient]);
+  Loaded({this.hospitals, this.specialist, this.appointments, this.patient})
+      : super([hospitals, specialist, appointments, patient]);
 }
 
 class Error extends MedlogState {

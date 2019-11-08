@@ -50,6 +50,8 @@ class AppointmentsPage extends StatelessWidget {
                     style: TextStyle(fontFamily: "Anton", fontSize: 20),
                   ),
                 );
+              }else{
+                return Container();
               }
             },
           )),

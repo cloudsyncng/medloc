@@ -30,21 +30,22 @@ class HospitalRepositoryImpl implements HospitalRepository {
 
   Future<Either<Failures, List<Hospital>>> _getHospitals(
       _singleOrManyHospitals getGeneralHospitals) async {
-    if (await networkInfo.isConnected) {
+    if (/*await networkInfo.isConnected*/ true) {
       try {
         final remoteHospital = await getGeneralHospitals();
-        localDataSource.cacheHospitals(remoteHospital);
+        // localDataSource.cacheHospitals(remoteHospital);
         return Right(remoteHospital);
       } on ServerException {
         return Left(ServerFailure());
       }
     } else {
-      try {
-        final localSource = await localDataSource.getHospitals();
-        return Right(localSource);
-      } on CacheException {
-        return Left(CacheFailure());
-      }
+      // try {
+      //   final localSource = await localDataSource.getHospitals();
+      //   return Right(localSource);
+      // } on CacheException {
+      //   return Left(CacheFailure());
+      // }
+      return Left(ServerFailure());
     }
   }
 }

@@ -7,6 +7,7 @@ class Patient extends Equatable {
   final String surname;
   final DateTime dob;
   final String gender;
+  final String email;
   final String password;
   final String phone;
 
@@ -17,6 +18,7 @@ class Patient extends Equatable {
       @required this.dob,
       @required this.gender,
       @required this.phone,
+      @required this.email,
       @required this.password})
-      : super([id, firstName, surname, dob, gender, phone, password]);
+      : super([id, firstName, surname, dob, gender, phone, email, password]);
 }

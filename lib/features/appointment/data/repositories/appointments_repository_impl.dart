@@ -18,7 +18,7 @@ class AppointmentsRepositoryImpl implements AppointmentsRepository {
       this.applicationLocalDataSource});
   @override
   Future<Either<Failures, List<Appointment>>> getAppointments() async {
-    if (!await networkInfo.isConnected) {
+    if (await networkInfo.isConnected) {
       try {
         final appointmnets =
             await applicationRemoteDataSource.getAppointments();

@@ -32,10 +32,15 @@ class ApplicationRemoteDataSourceImpl implements ApplicationRemoteDataSource {
   }
 
   @override
-  Future<List<HospitalModel>> getHospitals() {
-    client.get('http://10.0.2.2:8000/api/hospitals',
+  Future<List<HospitalModel>> getHospitals() async {
+    final http.Response response = await client.get(
+        'http://10.0.2.2:8000/api/hospitals',
         headers: {'Content-Type': 'application/json'});
-    return null;
+    if (response.statusCode == 200) {
+      return HospitalModel.hospitalJsonParser(response.body);
+    } else {
+      throw ServerException();
+    }
   }
 
   @override
