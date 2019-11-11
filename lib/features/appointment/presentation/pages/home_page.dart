@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:med_plus/features/appointment/presentation/utils/styles.dart';
 import 'package:med_plus/features/appointment/presentation/widgets/bashboard_btn.dart';
@@ -12,7 +13,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String phone = "##############";
+  String phone = "08033556699";
   _makeCall() async {
     if (await canLaunch("tel:$phone")) {
       await launch("tel:$phone");
@@ -23,6 +24,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.instance = ScreenUtil(width: 750, height: 1334, allowFontScaling: true)..init(context);
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -30,7 +33,7 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: <Widget>[
               SizedBox(
-                height: 50,
+                height: ScreenUtil.getInstance().setHeight(60),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -47,8 +50,8 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
               Container(
-                margin: EdgeInsets.only(top: 10),
-                height: 40,
+                margin: EdgeInsets.only(top: ScreenUtil.getInstance().setWidth(20)),
+                height: ScreenUtil.getInstance().setHeight(80),
                 decoration: BoxDecoration(
                     color: Colors.black26,
                     borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -56,26 +59,26 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Container(
-                      padding: EdgeInsets.only(left: 20),
+                      padding: EdgeInsets.only(left: ScreenUtil.getInstance().setWidth(80)),
                       child: Text(
                         phone,
-                        style: TextStyle(fontSize: 18),
+                        style: TextStyle(fontSize: ScreenUtil.getInstance().setSp(32)),
                       ),
                     ),
                     GestureDetector(
                       onTap: _makeCall,
                       child: Container(
-                        padding: EdgeInsets.only(left: 20, right: 20),
-                        height: double.infinity,
+                        padding: EdgeInsets.only(left: ScreenUtil.getInstance().setWidth(20), right: ScreenUtil.getInstance().setWidth(20)),
+                        height: ScreenUtil.getInstance().height,
                         child: Row(
                           children: <Widget>[
                             Text(
                               "HOTLINE",
                               style:
-                                  TextStyle(fontSize: 16, color: Colors.white),
+                                  TextStyle(fontSize: ScreenUtil.getInstance().setSp(30), color: Colors.white),
                             ),
                             SizedBox(
-                              width: 15,
+                              width: ScreenUtil.getInstance().setWidth(20),
                             ),
                             Icon(
                               MdiIcons.phoneOutgoing,
@@ -86,8 +89,8 @@ class _HomePageState extends State<HomePage> {
                         decoration: BoxDecoration(
                             color: Colors.green,
                             borderRadius: BorderRadius.only(
-                                bottomRight: Radius.circular(10),
-                                topRight: Radius.circular(10))),
+                                bottomRight: Radius.circular(ScreenUtil.getInstance().setWidth(20)),
+                                topRight: Radius.circular(ScreenUtil.getInstance().setWidth(20)))),
                       ),
                     )
                   ],
@@ -100,8 +103,8 @@ class _HomePageState extends State<HomePage> {
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         childAspectRatio: 1.5,
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 10),
+                        crossAxisSpacing: ScreenUtil.getInstance().setWidth(20),
+                        mainAxisSpacing: ScreenUtil.getInstance().setWidth(20)),
                     itemBuilder: (context, index) {
                       return Material(
                         child: InkWell(

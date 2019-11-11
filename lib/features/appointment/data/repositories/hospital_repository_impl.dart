@@ -30,7 +30,7 @@ class HospitalRepositoryImpl implements HospitalRepository {
 
   Future<Either<Failures, List<Hospital>>> _getHospitals(
       _singleOrManyHospitals getGeneralHospitals) async {
-    if (/*await networkInfo.isConnected*/ true) {
+    if (await networkInfo.isConnected) {
       try {
         final remoteHospital = await getGeneralHospitals();
         // localDataSource.cacheHospitals(remoteHospital);

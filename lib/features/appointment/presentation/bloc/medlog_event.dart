@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:med_plus/features/appointment/domian/entities/patient.dart';
 import 'package:meta/meta.dart';
 
 @immutable
@@ -13,15 +12,8 @@ class GetSpecialistsEvent extends MedlogEvent {}
 
 class GetHospitalsEvent extends MedlogEvent {}
 
-class GetPatientEvent extends MedlogEvent {
-  final String phone;
-  final String password;
+class GetHospitalsWithSpecialityEvent extends MedlogEvent {
+  final String query;
 
-  GetPatientEvent({this.phone, this.password}) : super([phone, password]);
-}
-
-class RegPatientEvent extends MedlogEvent {
-  final Patient patient;
-
-  RegPatientEvent({this.patient}) : super([patient]);
+  GetHospitalsWithSpecialityEvent({@required this.query});
 }

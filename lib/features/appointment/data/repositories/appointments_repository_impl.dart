@@ -20,10 +20,10 @@ class AppointmentsRepositoryImpl implements AppointmentsRepository {
   Future<Either<Failures, List<Appointment>>> getAppointments() async {
     if (await networkInfo.isConnected) {
       try {
-        final appointmnets =
+        final appointments =
             await applicationRemoteDataSource.getAppointments();
         //! await applicationLocalDataSource.cacheAppointments(appointmnets);
-        return Right(appointmnets);
+        return Right(appointments);
       } on ServerException {
         return Left(ServerFailure());
       }

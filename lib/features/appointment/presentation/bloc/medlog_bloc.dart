@@ -30,13 +30,7 @@ class MedlogBloc extends Bloc<MedlogEvent, MedlogState> {
   Stream<MedlogState> mapEventToState(
     MedlogEvent event,
   ) async* {
-    if (event is GetPatientEvent) {
-      yield Loading();
-      final patient = await getPatient(event.phone, event.password);
-      yield patient.fold(
-          (failures) => Error(message: _mapFailureToMessage(failures)),
-          (patient) => Loaded(patient: patient));
-    } else if (event is GetAppointmentsEvents) {
+    if (event is GetAppointmentsEvents) {
       yield Loading();
       final appointments = await getAppointments();
       yield appointments.fold(
@@ -48,6 +42,8 @@ class MedlogBloc extends Bloc<MedlogEvent, MedlogState> {
       yield hospitals.fold(
           (failures) => Error(message: _mapFailureToMessage(failures)),
           (hospitals) => Loaded(hospitals: hospitals));
+    } else if (state is GetHospitalsWithSpecialityEvent) {
+      yield Loading();
     }
   }
 

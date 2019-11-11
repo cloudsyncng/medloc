@@ -29,9 +29,8 @@ class _DashBoardState extends State<DashBoard> {
               setState(() {
                 _currentIndex = index;
                 pageController.animateToPage(index,
-                    duration: Duration(milliseconds: 300),
-                    curve: ElasticOutCurve());
-                print(_currentIndex);
+                    duration: Duration(milliseconds: 500),
+                    curve: Curves.easeOut);
               });
             },
             type: BottomNavigationBarType.fixed,
@@ -50,15 +49,10 @@ class _DashBoardState extends State<DashBoard> {
           ),
         ),
         body: PageView.builder(
-          onPageChanged: (index) {
-            setState(() {
-              _currentIndex = index;
-            });
-          },
           controller: pageController,
           itemCount: mpages.length,
           itemBuilder: (context, index) {
-            return mpages[_currentIndex];
+            return mpages[index];
           },
         ));
   }
